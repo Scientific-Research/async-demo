@@ -1,4 +1,5 @@
 const getUser = (id, callback) => {
+  return new Promise((resolve,reject)=>)
   setTimeout(() => {
     console.log("Reading a user from a database...");
     callback({
