@@ -3,9 +3,11 @@ const p = new Promise((resolve, reject) => {
   // ...
   setTimeout(() => {
     // after 2 seconds we have the value of 1 at the output!
-    resolve(1);
+    // resolve(1); // pending => resolved , fulfilled
+    reject(new Error("message")); // pending => rejected
   }, 2000);
-  //   reject(new Error("message"));
 });
 
-p.then((result) => console.log("Result: ", result));
+p.then((result) => console.log("Result: ", result)).catch((err) =>
+  console.log("ERORR", err.message)
+);
