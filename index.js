@@ -7,11 +7,6 @@ const getUser = (id, callback) => {
     });
   }, 2000);
 };
-console.log("Before...");
-getUser(1, (user) => {
-  console.log("User", user);
-});
-console.log("After...");
 
 // Callbacks
 // Promises
@@ -23,19 +18,26 @@ console.log("After...");
 
 // 1. convert this function to an Asynchronous function:
 
-const repo = ["repo1", "repo", "repo3"];
+const repo = ["repo1", "repo2", "repo3"];
 const getRepositories = (username, callback) => {
   setTimeout(() => {
-    console.log("----------------------------------------");
+    console.log("---------------------------------------------------");
     console.log("Reading repositories from Github...");
     callback({
       username: username,
-      repo: ["repo1", "repo", "repo3"],
+      // repo: ["repo1", "repo2", "repo3"],
+      repositories: repo,
     });
   }, 2000);
 };
+
+/////////////////////////////////////////////////////////
 console.log("Before...");
-getRepositories("Max", (repo) => {
-  console.log("Repo", repo);
+getUser(1, (user) => {
+  console.log("User", user);
+  getRepositories(user.gitHubUsername, (repos) => {
+    console.log("Repos", repos);
+  });
 });
 console.log("After...");
+/////////////////////////////////////////////////////////
