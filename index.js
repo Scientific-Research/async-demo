@@ -36,8 +36,12 @@ const getCommits = (repo) => {
 };
 /////////////////////////////////////////////////////////
 console.log("Before...");
-const p = getUser(1, "Max");
-p.then((user) => console.log(user));
+// getUser(1, "Max123").then((user) => console.log(user));
+getUser(1, "Max123")
+  .then((user) => getRepositories(user.gitHubUsername))
+  .then((repos) => getCommits(repos[0]))
+  .then((commits) => console.log("Commits", commits))
+  .catch((err) => console.log("ERROR", err.message));
 
 // getUser(1, (user) => {
 //   console.log("User", user);
