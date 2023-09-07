@@ -1,16 +1,16 @@
-const getUser = (id) => {
+const getUser = (id, callback) => {
   setTimeout(() => {
-    console.log("Reading a user from a database...", id);
-    return {
+    console.log("Reading a user from a database...");
+    callback({
       id: id,
       gitHubUsername: "Maxi",
-    };
+    });
   }, 2000);
-  return 1;
 };
 console.log("Before...");
-const user = getUser(1);
-console.log(user);
+getUser(1, (user) => {
+  console.log("User", user);
+});
 console.log("After...");
 
 // Callbacks
