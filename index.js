@@ -36,12 +36,14 @@ const getCommits = (repo) => {
 };
 /////////////////////////////////////////////////////////
 console.log("Before...");
+
+// Promise-based approach
 // getUser(1, "Max123").then((user) => console.log(user));
-getUser(1, "Max123")
-  .then((user) => getRepositories(user.gitHubUsername))
-  .then((repos) => getCommits(repos[0]))
-  .then((commits) => console.log("Commits", commits))
-  .catch((err) => console.log("ERROR", err.message));
+// getUser(1, "Max123")
+//   .then((user) => getRepositories(user.gitHubUsername))
+//   .then((repos) => getCommits(repos[0]))
+//   .then((commits) => console.log("Commits", commits))
+//   .catch((err) => console.log("ERROR", err.message));
 
 // getUser(1, (user) => {
 //   console.log("User", user);
@@ -49,5 +51,16 @@ getUser(1, "Max123")
 //     console.log("Repos", repos);
 //   });
 // });
+
+// Async and Await approach:
+const displayCommits = async () => {
+  const user = await getUser(1);
+  const repos = await getRepositories(user.gitHubUsername);
+  const commits = await getCommits(repos[0]);
+  console.log(commits);
+};
+
 console.log("After...");
 /////////////////////////////////////////////////////////
+
+displayCommits();
