@@ -17,11 +17,12 @@ const getRepositories = (username) => {
     setTimeout(() => {
       console.log("---------------------------------------------------");
       console.log("Reading repositories from Github...");
-      resolve({
-        username: username,
-        // repo: ["repo1", "repo2", "repo3"],
-        repositories: repo,
-      });
+      // resolve({
+      //   username: username,
+      //   // repo: ["repo1", "repo2", "repo3"],
+      //   repositories: repo,
+      // });
+      reject(new Error("There ist an Error in Repo..."));
     }, 2000);
   });
 };
@@ -54,10 +55,15 @@ console.log("Before...");
 
 // Async and Await approach:
 const displayCommits = async () => {
-  const user = await getUser(1);
-  const repos = await getRepositories(user.gitHubUsername);
-  const commits = await getCommits(repos[0]);
-  console.log(commits);
+  try {
+    const user = await getUser(1);
+    const repos = await getRepositories(user.gitHubUsername);
+    const commits = await getCommits(repos[0]);
+    console.log(commits);
+  } catch (err) {
+    // err.message("Something goes wrong...");
+    console.log("Something goes wrong...", err.message);
+  }
 };
 
 console.log("After...");
